@@ -22,12 +22,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <version>11.0.0-M4</version>
-        </dependency>
-
 
     </dependencies>
 
