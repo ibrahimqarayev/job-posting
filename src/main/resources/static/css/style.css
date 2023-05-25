@@ -1,3 +1,5 @@
+
+
 :root {
     --primary: #00B074;
     --secondary: #2B9BFF;
@@ -11,6 +13,21 @@
     right: 45px;
     bottom: 45px;
     z-index: 99;
+}
+
+
+/*** Spinner ***/
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
 }
 
 
@@ -122,7 +139,7 @@
         opacity: 0;
         visibility: hidden;
         transition: .5s;
-        
+
     }
 
     .navbar .nav-item:hover .dropdown-menu {
@@ -166,7 +183,7 @@
         position: relative;
         min-height: 500px;
     }
-    
+
     .header-carousel .owl-carousel-item img {
         position: absolute;
         width: 100%;
@@ -267,9 +284,6 @@
     border-color: rgba(0, 0, 0, .08);
     box-shadow: none;
 }
-
-
-
 
 
 /*** Footer ***/
