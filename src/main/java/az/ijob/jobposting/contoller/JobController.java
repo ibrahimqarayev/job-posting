@@ -15,6 +15,16 @@ public class JobController {
         return "index";
     }
 
+    @GetMapping("/companies")
+    public String companies(){
+        return "companies";
+    }
+
+    @GetMapping("/job-list")
+    public String jobListie(){
+        return "job-list";
+    }
+
     @GetMapping("/about")
     public String about(){
         return "about";
@@ -25,14 +35,14 @@ public class JobController {
         return "contact";
     }
 
-    @GetMapping("/companies")
-    public String companies(){
-        return "companies";
+    @GetMapping("/register")
+    public String register(){
+        return "register";
     }
 
-    @GetMapping("/job-list")
-    public String jobListie(){
-        return "job-list";
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 
 }
