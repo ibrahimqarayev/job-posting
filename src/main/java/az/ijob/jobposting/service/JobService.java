@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Base64;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -46,6 +47,10 @@ public class JobService {
                 .location(job.getLocation())
                 .creationTime(job.getCreationTime())
                 .build();
+    }
+
+    public List<Job> findAll(){
+        return jobRepository.findAll();
     }
 
 }
