@@ -10,8 +10,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,37 +21,72 @@ import java.util.List;
 public class JobService {
     private final JobRepository jobRepository;
 
-    public JobDto add(String name, int salary, String company, String location, MultipartFile logo) {
+    public JobDto addJob(
+            String position,
+            String company,
+            String city,
+            String oHours,
+            Integer salary,
+            Integer age,
+            String education,
+            SimpleDateFormat deadline,
+            String email,
+            String description,
+            String requirements,
+            MultipartFile companyLogo
+    ) {
 
-        String fileName = StringUtils.cleanPath(logo.getOriginalFilename());
 
         Job job = new Job();
-        job.setName(name);
-        job.setSalary(salary);
+        job.setPosition(position);
         job.setCompany(company);
+        job.setCity(city);
+        job.setOHours(oHours);
+        job.setSalary(salary);
+        job.setAge(age);
+        job.setEducation(education);
+        job.setDeadline(deadline);
+        job.setEmail(email);
+        job.setDescription(description);
+        job.setRequirements(requirements);
 
-        try {
-            job.setLogo(Base64.getEncoder().encodeToString(logo.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        if (companyLogo != null && !companyLogo.isEmpty()) {
+            String fileName = StringUtils.cleanPath(companyLogo.getOriginalFilename());
+            if (fileName.contains("..")) {
+                System.out.println("Not a valid file");
+            }
+            try {
+                job.setCompanyLogo(Base64.getEncoder().encodeToString(companyLogo.getBytes()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            throw new RuntimeException("FAYL XƏTASI");
         }
 
-        job.setLocation(location);
-        job.setCreationTime(LocalDateTime.now());
 
-        jobRepository.save(job);
-
+        Job savedJob = jobRepository.save(job);
         return JobDto.builder()
-                .id(job.getId())
-                .name(job.getName())
-                .salary(job.getSalary())
-                .company(job.getCompany())
-                .location(job.getLocation())
-                .creationTime(job.getCreationTime())
+                .id(savedJob.getId())
+                .position(savedJob.getPosition())
+                .company(savedJob.getCompany())
+                .city(savedJob.getCity())
+                .oHours(savedJob.getOHours())
+                .salary(savedJob.getSalary())
+                .age(savedJob.getAge())
+                .education(savedJob.getEducation())
+                .deadline(savedJob.getDeadline())
+                .email(savedJob.getEmail())
+                .description(savedJob.getEducation())
+                .requirements(savedJob.getRequirements())
+                .companyLogo(savedJob.getCompanyLogo())
                 .build();
+
     }
 
-    public List<Job> findAll(){
+
+    public List<Job> findAll() {
         return jobRepository.findAll();
     }
 
