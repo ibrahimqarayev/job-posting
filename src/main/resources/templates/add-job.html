@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -9,27 +9,31 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link th:href="@{/img/favicon.ico}" rel="icon">
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
+    <link th:href="@{https://fonts.googleapis.com}" rel="preconnect">
+    <link th:href="@{https://fonts.gstatic.com}" crossorigin rel="preconnect">
+    <link th:href="@{https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap}"
           rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css}" rel="stylesheet">
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css}" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css}" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -37,7 +41,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center text-center py-0 px-4 px-lg-5">
+        <a th:href="@{/index}" class="navbar-brand d-flex align-items-center text-center py-0 px-4 px-lg-5">
             <h1 class="m-0 text-primary">JOB.AZ</h1>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
@@ -46,15 +50,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Ana Səhifə</a>
+                <a th:href="@{/index}" class="nav-item nav-link">Ana Səhifə</a>
 
-                <a href="about.html" class="nav-item nav-link">Şirkətlər</a>
-                <a href="job-list.html" class="nav-item nav-link">Vakansiyalar</a>
-                <a href="about.html" class="nav-item nav-link">Haqqımızda</a>
-                <a href="contact.html" class="nav-item nav-link">Əlaqə</a>
-                <a href="register.html" class="nav-item nav-link active">Qeydiyyat</a>
+                <a th:href="@{/companies}" class="nav-item nav-link">Şirkətlər</a>
+                <a th:href="@{/job-list}" class="nav-item nav-link">Vakansiyalar</a>
+                <a th:href="@{/about}" class="nav-item nav-link">Haqqımızda</a>
+                <a th:href="@{/conatct}" class="nav-item nav-link">Əlaqə</a>
+                <a th:href="@{/register}" class="nav-item nav-link active">Qeydiyyat</a>
             </div>
-            <a href="login.html" class="btn btn-primary rounded-0 py-4 px-lg-4 d-none d-lg-block">Daxil Ol<i
+            <a th:href="@{/login}" class="btn btn-primary rounded-0 py-4 px-lg-4 d-none d-lg-block">Daxil Ol<i
                     class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
@@ -69,33 +73,58 @@
 
                 <div class="wow fadeInUp" data-wow-delay="0.5s">
 
-                    <form>
+                    <form th:action="@{/add-job}" method="post" enctype="multipart/form-data">
                         <div class="row g-3">
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="company">
+                                    <input type="text" class="form-control" id="position" name="position">
+                                    <label for="position">Vəzifə</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="company" name="company">
                                     <label for="company">Şirkət</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="city">
+                                    <input type="text" class="form-control" id="city" name="city">
                                     <label for="city">Şəhər</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="age">
+                                    <select class="form-control" id="oHours" name="oHours">
+                                        <option value="" disabled selected>İş saatı</option>
+                                        <option value="Part Time">Part Time</option>
+                                        <option value="Full Time">Full Time</option>
+                                    </select>
+                                    <label for="oHours">İş saatı</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="salary" name="salary">
+                                    <label for="salary">Maaş</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="age" name="age">
                                     <label for="age">Yaş</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <select class="form-control" id="education">
+                                    <select class="form-control" id="education" name="education">
                                         <option value="" disabled selected>Təhsil səviyyəsini seçin</option>
                                         <option value="developer">Vacib deyil</option>
                                         <option value="designer">Orta</option>
@@ -107,14 +136,14 @@
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="date" class="form-control" id="deadline">
+                                    <input type="date" class="form-control" id="deadline" name="deadline">
                                     <label for="deadline">Son müraciət tarixi</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email">
+                                    <input type="email" class="form-control" id="email" name="email">
                                     <label for="email">E-mail</label>
                                 </div>
                             </div>
@@ -122,26 +151,24 @@
 
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" id="description"></textarea>
+                                    <textarea class="form-control" id="description" name="description"></textarea>
                                     <label for="description">İş barədə məlumat</label>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" id="requirements" ></textarea>
+                                    <textarea class="form-control" id="requirements" name="requirements"></textarea>
                                     <label for="requirements">Namizəddə tələblər</label>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="file" class="form-control" id="companyLogo">
+                                    <input type="file" class="form-control" id="companyLogo" name="companyLogo">
                                     <label for="companyLogo">Şirkət logosu</label>
                                 </div>
                             </div>
-
-
 
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Paylaş</button>
@@ -156,11 +183,10 @@
 <!-- Contact End -->
 
 
-
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="copyright">
-        &copy; <a class="border-bottom" href="#">JOB.AZ</a> , Bütün hüquqlar qorunur
+        &copy; <a class="border-bottom" th:href="@{/index}">JOB.AZ</a> , Bütün hüquqlar qorunur
     </div>
 </div>
 <!-- Footer End -->
@@ -170,15 +196,15 @@
 </div>
 
 <!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="lib/wow/wow.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script th:src="@{https://code.jquery.com/jquery-3.7.0.min.js}"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/lib/wow/wow.min.js}"></script>
+<script th:src="@{/lib/easing/easing.min.js}"></script>
+<script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
 
-<!-- Template Javascript -->
-<script src="js/main.js"></script>
+<!--Template Javascript -->
+<script th:src="@{/js/main.js}"></script>
 </body>
 
 </html>
