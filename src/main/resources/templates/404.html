@@ -31,8 +31,8 @@
     <!-- Template Stylesheet -->
     <link th:href="@{/css/style.css}" rel="stylesheet">
 
-<!--    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css}" rel="stylesheet"-->
-<!--          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css}" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
 
@@ -75,7 +75,7 @@
                     <h1 class="mb-4">Səhifə Tapılmadı</h1>
                     <p class="mb-4">Üzr istəyirik, axtardığınız səhifə saytımızda yoxdur! Ana səhifəmizə keçin və ya
                         axtarışdan istifadə etməyə çalışın</p>
-                    <a class="btn btn-primary py-3 px-5" href="">Ana Səhifəyə Qayıt</a>
+                    <a class="btn btn-primary py-3 px-5" th:href="@{/index}">Ana Səhifəyə Qayıt</a>
                 </div>
             </div>
         </div>
