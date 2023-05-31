@@ -2,6 +2,7 @@ package az.ijob.jobposting.service;
 
 
 import az.ijob.jobposting.dto.JobDto;
+import az.ijob.jobposting.exception.JobNotFoundException;
 import az.ijob.jobposting.model.Job;
 import az.ijob.jobposting.repository.JobRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +37,6 @@ public class JobService {
             String requirements,
             MultipartFile companyLogo
     ) {
-
 
         Job job = new Job();
         job.setPosition(position);
@@ -88,6 +89,25 @@ public class JobService {
 
     public List<Job> findAll() {
         return jobRepository.findAll();
+    }
+
+    public JobDto findById(Long id){
+        Job job = jobRepository.findById(id).orElseThrow(() -> new JobNotFoundException("Job not found"));
+        return JobDto.builder()
+                .id(job.getId())
+                .position(job.getPosition())
+                .company(job.getCompany())
+                .city(job.getCity())
+                .oHours(job.getOHours())
+                .salary(job.getSalary())
+                .age(job.getAge())
+                .education(job.getEducation())
+                .deadline(job.getDeadline())
+                .email(job.getEmail())
+                .description(job.getEducation())
+                .requirements(job.getRequirements())
+                .companyLogo(job.getCompanyLogo())
+                .build();
     }
 
 }
