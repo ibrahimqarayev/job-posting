@@ -16,6 +16,7 @@ import java.util.Date;
 public class JobDto {
 
     private Long id;
+    private String category;
     private String position;
     private String company;
     public String city;
