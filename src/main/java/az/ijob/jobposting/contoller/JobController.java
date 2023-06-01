@@ -1,5 +1,6 @@
 package az.ijob.jobposting.contoller;
 
+import az.ijob.jobposting.dto.JobDto;
 import az.ijob.jobposting.model.Job;
 import az.ijob.jobposting.service.JobService;
 import lombok.RequiredArgsConstructor;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -36,6 +35,13 @@ public class JobController {
         model.addAttribute("jobs", jobs);
         return "job-list";
     }
+    
+    @GetMapping("/job/{id}")
+    public String findById(Long id,Model model){
+        JobDto job = jobService.findById(id);
+        model.addAttribute("job", job);
+        return "job-detail";
+    }
 
     @GetMapping("/about")
     public String about() {
@@ -54,6 +60,7 @@ public class JobController {
 
     @PostMapping("/add-job")
     public String addJob(
+            @RequestParam(name = "category",required = false) String category,
             @RequestParam(name = "position",required = false) String position,
             @RequestParam(name = "company",required = false) String company,
             @RequestParam(name = "city",required = false) String city,
@@ -67,7 +74,7 @@ public class JobController {
             @RequestParam(name = "requirements", required = false) String requirements,
             @RequestParam(name = "companyLogo", required = false) MultipartFile companyLogo
     ) {
-        jobService.addJob(position, company, city,oHours, salary, age, education, deadline, email, description, requirements, companyLogo);
+        jobService.addJob(category,position, company, city,oHours, salary, age, education, deadline, email, description, requirements, companyLogo);
         return "redirect:/job-list";
     }
 
@@ -81,9 +88,29 @@ public class JobController {
         return "login";
     }
 
-    @GetMapping("xeta")
+    @GetMapping("/xeta")
     public String xeta() {
         return "404";
+    }
+
+    @GetMapping("/xeta1")
+    public String xeta1() {
+        return "500";
+    }
+
+
+    @GetMapping("/job-detail")
+    public String jobDetail() {
+        return "job-detail";
+    }
+
+    @PostMapping("/search")
+    public String searchJobs(String position,String  category,String city,Model model){
+
+        List<Job> searchResults = jobService.findByCriteria(position, category, city);
+
+        model.addAttribute("searchResults", searchResults);
+        return "search-results";
     }
 
 
