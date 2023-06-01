@@ -24,6 +24,7 @@ public class JobService {
     private final JobRepository jobRepository;
 
     public JobDto addJob(
+            String category,
             String position,
             String company,
             String city,
@@ -39,6 +40,7 @@ public class JobService {
     ) {
 
         Job job = new Job();
+        job.setCategory(category);
         job.setPosition(position);
         job.setCompany(company);
         job.setCity(city);
@@ -70,6 +72,7 @@ public class JobService {
         Job savedJob = jobRepository.save(job);
         return JobDto.builder()
                 .id(savedJob.getId())
+                .category(job.getCategory())
                 .position(savedJob.getPosition())
                 .company(savedJob.getCompany())
                 .city(savedJob.getCity())
@@ -91,10 +94,11 @@ public class JobService {
         return jobRepository.findAll();
     }
 
-    public JobDto findById(Long id){
+    public JobDto findById(Long id) {
         Job job = jobRepository.findById(id).orElseThrow(() -> new JobNotFoundException("Job not found"));
         return JobDto.builder()
                 .id(job.getId())
+                .category(job.getCategory())
                 .position(job.getPosition())
                 .company(job.getCompany())
                 .city(job.getCity())
@@ -109,5 +113,27 @@ public class JobService {
                 .companyLogo(job.getCompanyLogo())
                 .build();
     }
+
+//    public Job findBy
+
+    public List<Job> findByCriteria(String position, String category, String city) {
+        if (position != null && category != null && city != null) {
+            return jobRepository.findByPositionAndCategoryAndCity(position, category, city);
+        } else if (position != null && category != null && city == null) {
+            return jobRepository.findByPositionAndCategory(position, category);
+        } else if (position != null && category == null && city != null) {
+            return jobRepository.findByPositionAndCity(position, city);
+        } else if (position == null && category != null && city != null) {
+            return jobRepository.findByCategoryAndCity(category, city);
+        } else if (position == null && category != null && city == null) {
+            return jobRepository.findByCategory(category);
+        } else if (position == null && category == null && city != null) {
+            return jobRepository.findByCity(city);
+        } else {
+           return jobRepository.findAll();
+        }
+
+    }
+
 
 }
