@@ -29,7 +29,7 @@ public class JobController {
         return "companies";
     }
 
-    @GetMapping("/job-list")
+    @GetMapping("/jobs")
     public String jobList(Model model) {
         List<Job> jobs = jobService.findAll();
         model.addAttribute("jobs", jobs);
