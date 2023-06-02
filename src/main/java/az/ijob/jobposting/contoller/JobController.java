@@ -75,7 +75,7 @@ public class JobController {
             @RequestParam(name = "companyLogo", required = false) MultipartFile companyLogo
     ) {
         jobService.addJob(category,position, company, city,oHours, salary, age, education, deadline, email, description, requirements, companyLogo);
-        return "redirect:/job-list";
+        return "redirect:/jobs";
     }
 
     @GetMapping("/register")
@@ -110,7 +110,7 @@ public class JobController {
         List<Job> searchResults = jobService.findByCriteria(position, category, city);
 
         model.addAttribute("searchResults", searchResults);
-        return "search-results";
+        return "redirect:/jobs";
     }
 
 
