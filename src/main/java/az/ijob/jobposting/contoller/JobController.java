@@ -33,7 +33,7 @@ public class JobController {
     public String jobList(Model model) {
         List<Job> jobs = jobService.findAll();
         model.addAttribute("jobs", jobs);
-        return "job-list";
+        return "jobs";
     }
     
     @GetMapping("/job/{id}")
@@ -98,6 +98,7 @@ public class JobController {
         return "500";
     }
 
+    // T E S T !
 
     @GetMapping("/job-detail")
     public String jobDetail() {
