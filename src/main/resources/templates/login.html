@@ -68,7 +68,7 @@
 
 
             <div class="wow fadeInUp" data-wow-delay="0.5s">
-                <form>
+                <form th:action="@{/login}" th:method="POST">
                     <div class="row g-3">
 
                         <div class="col-md-12">
@@ -80,14 +80,14 @@
 
                         <div class="col-md-12">
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="password" name="şifrə"
+                                <input type="password" class="form-control" id="password" name="password"
                                        placeholder="Şifrə">
                                 <label for="password">Şifrə</label>
                             </div>
                         </div>
 
                         <div class="col-md-12">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Göndər</button>
+                            <button class="btn btn-primary w-100 py-3" type="submit">Daxil Ol</button>
                         </div>
 
                         <div class="col-md-2">
