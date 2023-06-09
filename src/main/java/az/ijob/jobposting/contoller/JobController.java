@@ -104,6 +104,10 @@ public class JobController {
     public String jobDetail() {
         return "job-detail";
     }
+    @GetMapping("/reset-password")
+    public String resetPassword() {
+        return "reset-password";
+    }
 
     @PostMapping("/search")
     public String searchJobs(String position,String  category,String city,Model model){
