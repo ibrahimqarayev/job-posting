@@ -1,5 +1,6 @@
 package az.ijob.jobposting.contoller;
 
+import az.ijob.jobposting.model.User;
 import az.ijob.jobposting.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -25,9 +26,11 @@ public class UserController {
         } else {
             throw new RuntimeException("PASSWORD EXCEPTION");
         }
-
         return "login";
 
     }
+
+    // T E S T
+
 
 }
