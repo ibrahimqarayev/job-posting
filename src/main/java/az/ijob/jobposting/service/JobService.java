@@ -12,11 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Base64;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -70,22 +67,7 @@ public class JobService {
 
 
         Job savedJob = jobRepository.save(job);
-        return JobDto.builder()
-                .id(savedJob.getId())
-                .category(job.getCategory())
-                .position(savedJob.getPosition())
-                .company(savedJob.getCompany())
-                .city(savedJob.getCity())
-                .oHours(savedJob.getOHours())
-                .salary(savedJob.getSalary())
-                .age(savedJob.getAge())
-                .education(savedJob.getEducation())
-                .deadline(savedJob.getDeadline())
-                .email(savedJob.getEmail())
-                .description(savedJob.getEducation())
-                .requirements(savedJob.getRequirements())
-                .companyLogo(savedJob.getCompanyLogo())
-                .build();
+        return entityToDto(savedJob);
 
     }
 
@@ -96,22 +78,7 @@ public class JobService {
 
     public JobDto findById(Long id) {
         Job job = jobRepository.findById(id).orElseThrow(() -> new JobNotFoundException("Job not found"));
-        return JobDto.builder()
-                .id(job.getId())
-                .category(job.getCategory())
-                .position(job.getPosition())
-                .company(job.getCompany())
-                .city(job.getCity())
-                .oHours(job.getOHours())
-                .salary(job.getSalary())
-                .age(job.getAge())
-                .education(job.getEducation())
-                .deadline(job.getDeadline())
-                .email(job.getEmail())
-                .description(job.getEducation())
-                .requirements(job.getRequirements())
-                .companyLogo(job.getCompanyLogo())
-                .build();
+        return entityToDto(job);
     }
 
 //    public Job findBy
@@ -130,9 +97,27 @@ public class JobService {
         } else if (position == null && category == null && city != null) {
             return jobRepository.findByCity(city);
         } else {
-           return jobRepository.findAll();
+            return jobRepository.findAll();
         }
+    }
 
+    public JobDto entityToDto(Job job) {
+        return JobDto.builder()
+                .id(job.getId())
+                .category(job.getCategory())
+                .position(job.getPosition())
+                .company(job.getCompany())
+                .city(job.getCity())
+                .oHours(job.getOHours())
+                .salary(job.getSalary())
+                .age(job.getAge())
+                .education(job.getEducation())
+                .deadline(job.getDeadline())
+                .email(job.getEmail())
+                .description(job.getEducation())
+                .requirements(job.getRequirements())
+                .companyLogo(job.getCompanyLogo())
+                .build();
     }
 
 
