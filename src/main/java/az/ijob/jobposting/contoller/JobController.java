@@ -88,16 +88,6 @@ public class JobController {
         return "login";
     }
 
-    @GetMapping("/xeta")
-    public String xeta() {
-        return "404";
-    }
-
-    @GetMapping("/xeta1")
-    public String xeta1() {
-        return "500";
-    }
-
     // T E S T !
 
     @GetMapping("/job-detail")
