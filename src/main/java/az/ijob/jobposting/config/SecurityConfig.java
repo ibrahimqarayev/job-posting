@@ -25,11 +25,14 @@ public class SecurityConfig {
                 .permitAll()
                 .and()
                 .logout()
+                .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(new AntPathRequestMatcher("/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
                 .and()
-                .csrf().disable();
+                .csrf().disable()
+                .authenticationManager(authenticationManager(http))
+                .httpBasic();
 
         return http.build();
     }
