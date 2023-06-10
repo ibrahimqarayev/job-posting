@@ -43,6 +43,7 @@ public class SecurityConfig {
         return http
                 .getSharedObject(AuthenticationManager.class)
 
+
                 .build();
     }
 
