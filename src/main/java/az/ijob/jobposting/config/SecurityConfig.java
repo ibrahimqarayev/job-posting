@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -23,7 +24,11 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/index", true)
                 .permitAll()
                 .and()
-                .httpBasic();
+                .logout()
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .and()
 
         return http.build();
     }
