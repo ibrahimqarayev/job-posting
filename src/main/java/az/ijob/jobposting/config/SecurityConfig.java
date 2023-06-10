@@ -40,7 +40,10 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) {
-        return http.build();
+        return http
+                .getSharedObject(AuthenticationManager.class)
+
+                .build();
     }
 
 }
