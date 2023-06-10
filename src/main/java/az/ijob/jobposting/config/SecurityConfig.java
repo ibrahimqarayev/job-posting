@@ -39,8 +39,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity httpSecurity) {
-
+    public AuthenticationManager authenticationManager(HttpSecurity http) {
+        return http.build();
     }
 
 }
