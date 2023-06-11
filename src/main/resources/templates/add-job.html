@@ -73,109 +73,119 @@
 
                 <div class="wow fadeInUp" data-wow-delay="0.5s">
 
-                    <form th:action="@{/add-job}" method="post" enctype="multipart/form-data">
+                    <form role="form" th:action="@{/jobs/new}" method="POST" th:object="${job}"
+                          enctype="multipart/form-data">
                         <div class="row g-3">
 
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="category" name="category">
-                                    <label for="category">Kateqoriya</label>
-                                </div>
-                            </div>
+<!--                            <div class="col-md-12">-->
+<!--                                <div class="form-floating">-->
+<!--                                    <input type="text" class="form-control" id="category" name="category"-->
+<!--                                           th:field="*{category}">-->
+<!--                                    <label for="category">Kateqoriya</label>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="position" name="position">
+                                    <input type="text" class="form-control" id="position" name="position"
+                                           th:field="*{position}">
                                     <label for="position">Vəzifə</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="company" name="company">
+                                    <input type="text" class="form-control" id="company" name="company"
+                                           th:field="*{company}">
                                     <label for="company">Şirkət</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="city" name="city">
+                                    <input type="text" class="form-control" id="city" name="city" th:field="*{city}">
                                     <label for="city">Şəhər</label>
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <select class="form-control" id="oHours" name="oHours">
-                                        <option value="" disabled selected>İş saatı</option>
-                                        <option value="Part Time">Part Time</option>
-                                        <option value="Full Time">Full Time</option>
-                                    </select>
-                                    <label for="oHours">İş saatı</label>
-                                </div>
-                            </div>
+<!--                            <div class="col-md-12">-->
+<!--                                <div class="form-floating">-->
+<!--                                    <select class="form-control" id="oHours" name="oHours" th:field="*{oHours}">-->
+<!--                                        <option value="" disabled selected>İş saatı</option>-->
+<!--                                        <option value="Part Time">Part Time</option>-->
+<!--                                        <option value="Full Time">Full Time</option>-->
+<!--                                    </select>-->
+<!--                                    <label for="oHours">İş saatı</label>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" id="salary" name="salary">
+                                    <input type="number" class="form-control" id="salary" name="salary"
+                                           th:field="*{salary}">
                                     <label for="salary">Maaş</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" id="age" name="age">
+                                    <input type="number" class="form-control" id="age" name="age" th:field="*{age}">
                                     <label for="age">Yaş</label>
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <select class="form-control" id="education" name="education">
-                                        <option value="" disabled selected>Təhsil səviyyəsini seçin</option>
-                                        <option value="developer">Vacib deyil</option>
-                                        <option value="designer">Orta</option>
-                                        <option value="manager">Ali</option>
-                                    </select>
-                                    <label for="education">Təhsil</label>
-                                </div>
-                            </div>
+<!--                            <div class="col-md-12">-->
+<!--                                <div class="form-floating">-->
+<!--                                    <select class="form-control" id="education" name="education"-->
+<!--                                            th:field="*{education}">-->
+<!--                                        <option value="" disabled selected>Təhsil səviyyəsini seçin</option>-->
+<!--                                        <option value="developer">Vacib deyil</option>-->
+<!--                                        <option value="designer">Orta</option>-->
+<!--                                        <option value="manager">Ali</option>-->
+<!--                                    </select>-->
+<!--                                    <label for="education">Təhsil</label>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+                            <!--                            <div class="col-md-12">-->
+                            <!--                                <div class="form-floating">-->
+                            <!--                                    <input type="date" class="form-control" id="deadline" name="deadline">-->
+                            <!--                                    <label for="deadline">Son müraciət tarixi</label>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="date" class="form-control" id="deadline" name="deadline">
-                                    <label for="deadline">Son müraciət tarixi</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" name="email">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           th:field="*{email}">
                                     <label for="email">E-mail</label>
                                 </div>
                             </div>
 
 
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" id="description" name="description"></textarea>
-                                    <label for="description">İş barədə məlumat</label>
-                                </div>
-                            </div>
+<!--                            <div class="col-12">-->
+<!--                                <div class="form-floating">-->
+<!--                                    <textarea class="form-control" id="description" name="description"-->
+<!--                                              th:field="*{description}"></textarea>-->
+<!--                                    <label for="description">İş barədə məlumat</label>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" id="requirements" name="requirements"></textarea>
+                                    <textarea class="form-control" id="requirements" name="requirements"
+                                              th:fields="*{requirements}"></textarea>
                                     <label for="requirements">Namizəddə tələblər</label>
                                 </div>
                             </div>
 
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="file" class="form-control" id="companyLogo" name="companyLogo">
-                                    <label for="companyLogo">Şirkət logosu</label>
-                                </div>
-                            </div>
+<!--                            <div class="col-12">-->
+<!--                                <div class="form-floating">-->
+<!--                                    <input type="file" class="form-control" id="companyLogo" name="companyLogo"-->
+<!--                                           th:field="*{companyLogo}">-->
+<!--                                    <label for="companyLogo">Şirkət logosu</label>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Paylaş</button>
