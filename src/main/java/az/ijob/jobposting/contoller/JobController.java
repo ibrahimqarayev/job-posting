@@ -7,17 +7,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class JobController {
     private final JobService jobService;
+
+    // T E S T !
 
     @GetMapping("/index")
     public String index() {
@@ -27,20 +27,6 @@ public class JobController {
     @GetMapping("/companies")
     public String companies() {
         return "companies";
-    }
-
-    @GetMapping("/jobs")
-    public String jobList(Model model) {
-        List<Job> jobs = jobService.findAll();
-        model.addAttribute("jobs", jobs);
-        return "jobs";
-    }
-    
-    @GetMapping("/job/{id}")
-    public String findById(Long id,Model model){
-        JobDto job = jobService.findById(id);
-        model.addAttribute("job", job);
-        return "job-detail";
     }
 
     @GetMapping("/about")
@@ -58,26 +44,6 @@ public class JobController {
         return "add-job";
     }
 
-    @PostMapping("/add-job")
-    public String addJob(
-            @RequestParam(name = "category",required = false) String category,
-            @RequestParam(name = "position",required = false) String position,
-            @RequestParam(name = "company",required = false) String company,
-            @RequestParam(name = "city",required = false) String city,
-            @RequestParam(name = "oHours",required = false) String oHours,
-            @RequestParam(name = "salary", required = false) Integer salary,
-            @RequestParam(name = "age", required = false) Integer age,
-            @RequestParam(name = "education", required = false) String education,
-            @RequestParam(name = "deadline", required = false) SimpleDateFormat deadline,
-            @RequestParam(name = "email", required = false) String email,
-            @RequestParam(name = "description", required = false) String description,
-            @RequestParam(name = "requirements", required = false) String requirements,
-            @RequestParam(name = "companyLogo", required = false) MultipartFile companyLogo
-    ) {
-        jobService.addJob(category,position, company, city,oHours, salary, age, education, deadline, email, description, requirements, companyLogo);
-        return "redirect:/jobs";
-    }
-
     @GetMapping("/register")
     public String register() {
         return "register";
@@ -88,23 +54,34 @@ public class JobController {
         return "login";
     }
 
-    // T E S T !
-
     @GetMapping("/job-detail")
     public String jobDetail() {
         return "job-detail";
     }
+
     @GetMapping("/reset-password")
     public String resetPassword() {
         return "reset-password";
     }
 
-    @PostMapping("/search")
-    public String searchJobs(String position,String  category,String city,Model model){
+    @GetMapping("/jobs")
+    public String jobs(Model model) {
+        List<JobDto> jobs = jobService.findAllJob();
+        model.addAttribute("jobs", jobs);
+        return "jobs";
+    }
 
-        List<Job> searchResults = jobService.findByCriteria(position, category, city);
+    @GetMapping("/jobs/new")
+    public String createJobForm(Model model) {
+        Job job = new Job();
+        model.addAttribute("job", job);
+        return "add-job";
+    }
 
-        model.addAttribute("searchResults", searchResults);
+
+    @PostMapping("/jobs/new")
+    public String addJob(@ModelAttribute("job") Job job) {
+        jobService.addJob(job);
         return "redirect:/jobs";
     }
 
