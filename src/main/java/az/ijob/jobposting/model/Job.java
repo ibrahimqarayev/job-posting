@@ -1,11 +1,11 @@
 package az.ijob.jobposting.model;
 
 import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -16,11 +16,21 @@ public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private int salary;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+    private String position;
     private String company;
-    private String logo;
-    private String location;
-    private LocalDateTime creationTime;
+    public String city;
+    public String oHours;
+    private Integer salary;
+    private Integer age;
+    private String education;
+    private String email;
+    private String description;
+    private String requirements;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String companyLogo;
 
 }
