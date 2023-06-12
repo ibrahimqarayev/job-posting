@@ -40,11 +40,6 @@ public class JobController {
         return "contact";
     }
 
-    @GetMapping("/add")
-    public String addForm() {
-        return "add-job";
-    }
-
     @GetMapping("/register")
     public String register() {
         return "register";
@@ -76,7 +71,7 @@ public class JobController {
     public String createJobForm(Model model) {
         Job job = new Job();
         model.addAttribute("job", job);
-        return "add-job";
+        return "jobs-add";
     }
 
 
