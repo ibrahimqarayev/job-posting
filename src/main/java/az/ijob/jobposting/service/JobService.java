@@ -2,12 +2,14 @@ package az.ijob.jobposting.service;
 
 
 import az.ijob.jobposting.dto.JobDto;
+import az.ijob.jobposting.exception.JobNotFoundException;
 import az.ijob.jobposting.model.Job;
 import az.ijob.jobposting.repository.JobRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -15,16 +17,25 @@ import java.util.stream.Collectors;
 public class JobService {
     private final JobRepository jobRepository;
 
-    public Job addJob(Job job) {
-        return jobRepository.save(job);
-
-    }
-
     public List<JobDto> findAllJob() {
         return jobRepository.findAll()
                 .stream().map(this::entityToDto).collect(Collectors.toList());
     }
 
+    public Job addJob(Job job) {
+        return jobRepository.save(job);
+    }
+
+
+    public JobDto findById(Long jobId) {
+        Job job = jobRepository.findById(jobId).orElseThrow(() -> new JobNotFoundException("Job not found !"));
+        return entityToDto(job);
+    }
+
+    public void updateJob(JobDto jobDto) {
+        Job job = dtoToEntity(jobDto);
+        jobRepository.save(job);
+    }
 
     public JobDto entityToDto(Job job) {
         return new JobDto(
