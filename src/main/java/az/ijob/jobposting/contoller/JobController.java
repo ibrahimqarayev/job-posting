@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -83,6 +84,21 @@ public class JobController {
     public String addJob(@ModelAttribute("job") Job job) {
         jobService.addJob(job);
         return "redirect:/jobs";
+    }
+
+    @GetMapping("/jobs/{jobId}/edit")
+    public String editJobForm(@PathVariable("jobId") Long jobId, Model model) {
+        JobDto job = jobService.findById(jobId);
+        model.addAttribute("job", job);
+        return "jobs-edit";
+    }
+
+
+    @PostMapping("/jobs/{jobId}/edit")
+    public String updateJob(@PathVariable("jobId") Long jobId, @ModelAttribute("job") JobDto job) {
+        job.setId(jobId);
+        jobService.updateJob(job);
+        return "redirect:jobs";
     }
 
 
