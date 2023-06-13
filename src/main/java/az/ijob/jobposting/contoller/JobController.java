@@ -67,6 +67,13 @@ public class JobController {
         return "jobs";
     }
 
+    @GetMapping("/jobs/{jobId}")
+    public String jobDetail(@PathVariable Long jobId, Model model) {
+        JobDto job = jobService.findById(jobId);
+        model.addAttribute("job", job);
+        return "job-detail";
+    }
+
     @GetMapping("/jobs/new")
     public String createJobForm(Model model) {
         Job job = new Job();
