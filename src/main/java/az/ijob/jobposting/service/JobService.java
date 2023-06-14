@@ -21,10 +21,9 @@ public class JobService {
                 .stream().map(this::entityToDto).collect(Collectors.toList());
     }
 
-    public Job addJob(Job job) {
-        return jobRepository.save(job);
+    public void addJob(Job job) {
+        jobRepository.save(job);
     }
-
 
     public JobDto findById(Long jobId) {
         Job job = jobRepository.findById(jobId).orElseThrow(() -> new JobNotFoundException("Job not found !"));
@@ -36,6 +35,15 @@ public class JobService {
         jobRepository.save(job);
     }
 
+    public void deleteById(Long jobId) {
+        jobRepository.deleteById(jobId);
+    }
+
+    public List<JobDto> searchJob(String query) {
+        return jobRepository.searchJob(query).stream().map(this::entityToDto).collect(Collectors.toList());
+    }
+
+    //Convert
     public JobDto entityToDto(Job job) {
         return new JobDto(
                 job.getId(),
@@ -72,7 +80,4 @@ public class JobService {
         );
     }
 
-    public void deleteById(Long jobId) {
-        jobRepository.deleteById(jobId);
-    }
 }
