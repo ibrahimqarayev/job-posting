@@ -6,10 +6,7 @@ import az.ijob.jobposting.service.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -92,6 +89,13 @@ public class JobController {
     public String deleteJob(@PathVariable("jobId") Long jobId) {
         jobService.deleteById(jobId);
         return "redirect:/jobs";
+    }
+
+    @GetMapping("/jobs/search")
+    public String searchJob(@RequestParam(name = "query") String query, Model model) {
+        List<JobDto> jobs = jobService.searchJob(query);
+        model.addAttribute("jobs", jobs);
+        return "jobs";
     }
 
     @GetMapping("/jobs/{jobId}/edit")
