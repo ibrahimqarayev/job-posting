@@ -88,6 +88,12 @@ public class JobController {
         return "redirect:/jobs";
     }
 
+    @PostMapping("/jobs/{jobId}/delete")
+    public String deleteJob(@PathVariable("jobId") Long jobId) {
+        jobService.deleteById(jobId);
+        return "redirect:/jobs";
+    }
+
     @GetMapping("/jobs/{jobId}/edit")
     public String editJobForm(@PathVariable("jobId") Long jobId, Model model) {
         JobDto job = jobService.findById(jobId);
