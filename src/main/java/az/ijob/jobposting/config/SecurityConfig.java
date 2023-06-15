@@ -19,32 +19,19 @@ public class SecurityConfig {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/sign-in")
-                .defaultSuccessUrl("/index", true)
-                .permitAll()
-                .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .and()
-                .csrf().disable()
-                .authenticationManager(authenticationManager(http))
-                .httpBasic();
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/index")
+                        .loginProcessingUrl("/login")
+                        .failureUrl("/login?error=true")
+                        .permitAll()
+                ).logout(logout -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logut")).permitAll()
+                );
+
 
         return http.build();
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) {
-        return http
-                .getSharedObject(AuthenticationManager.class)
-
-
-                .build();
-    }
 
 }
