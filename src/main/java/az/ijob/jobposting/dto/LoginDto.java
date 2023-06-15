@@ -1,4 +1,4 @@
-package az.ijob.jobposting.request;
+package az.ijob.jobposting.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginRequest {
+public class LoginDto {
     private String email;
     private String password;
 }
