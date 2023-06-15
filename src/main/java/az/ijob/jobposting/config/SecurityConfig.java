@@ -29,7 +29,6 @@ public class SecurityConfig {
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logut")).permitAll()
                 );
 
-
         return http.build();
     }
 
