@@ -31,6 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                             .collect(Collectors.toList())
 
             );
+
             return authUser;
         } else {
             throw new UsernameNotFoundException("User not found");
