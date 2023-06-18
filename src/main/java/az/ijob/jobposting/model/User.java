@@ -29,5 +29,5 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
-    private List<Role> roleList = new ArrayList<>();
+    private List<Role> roles = new ArrayList<>();
 }
