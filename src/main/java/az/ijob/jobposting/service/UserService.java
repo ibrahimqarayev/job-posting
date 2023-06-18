@@ -23,7 +23,7 @@ public class UserService {
         user.setEmail(registrationDto.getEmail());
         user.setPassword(registrationDto.getPassword());
         Role role = roleRepository.findByName("USER");
-        user.setRoleList(Arrays.asList(role));
+        user.setRoles(Arrays.asList(role));
         userRepository.save(user);
     }
 
