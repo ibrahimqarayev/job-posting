@@ -43,6 +43,11 @@ public class JobService {
         return jobRepository.searchJob(query).stream().map(this::entityToDto).collect(Collectors.toList());
     }
 
+    public List<JobDto> findByCategory(String category) {
+        return jobRepository.findByCategory(category).stream().map(job -> entityToDto(job)).collect(Collectors.toList());
+    }
+
+
     //Convert
     public JobDto entityToDto(Job job) {
         return new JobDto(
