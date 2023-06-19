@@ -91,6 +91,13 @@ public class JobController {
         return "redirect:/jobs";
     }
 
+    @GetMapping("/categories/{category}")
+    public String deleteJob(@PathVariable("category") String category, Model model) {
+        List<JobDto> jobs = jobService.findByCategory(category);
+        model.addAttribute("jobs", jobs);
+        return "jobs";
+    }
+
     @GetMapping("/jobs/search")
     public String searchJob(@RequestParam(name = "query") String query, Model model) {
         List<JobDto> jobs = jobService.searchJob(query);
