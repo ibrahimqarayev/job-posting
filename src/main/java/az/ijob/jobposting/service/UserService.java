@@ -1,10 +1,12 @@
 package az.ijob.jobposting.service;
 
+import az.ijob.jobposting.dto.LoginDto;
 import az.ijob.jobposting.dto.RegistrationDto;
 import az.ijob.jobposting.model.Role;
 import az.ijob.jobposting.model.User;
 import az.ijob.jobposting.repository.RoleRepository;
 import az.ijob.jobposting.repository.UserRepository;
+import ch.qos.logback.classic.servlet.LogbackServletContainerInitializer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,16 @@ public class UserService {
         Role role = roleRepository.findByName("USER");
         user.setRoles(Arrays.asList(role));
         userRepository.save(user);
+    }
+
+    public boolean login(LoginDto loginDto) {
+        User user = userRepository.findByEmail(loginDto.getEmail());
+
+        if (user.getPassword().equals(loginDto.getPassword())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
