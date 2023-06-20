@@ -67,13 +67,22 @@
             <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Daxil Ol</h1>
 
 
+            <div th:if="${param.error}" class="alert alert-danger">
+                Email vəya şifrə yalnışdır !
+            </div>
+
+            <div th:if="${param.logout}" class="alert alert-success">
+                Çıxış etdiniz.
+            </div>
+
             <div class="wow fadeInUp" data-wow-delay="0.5s">
-                <form th:action="@{/login}" th:method="POST">
+                <form th:action="@{/login}" th:method="POST" th:object="${user}">
                     <div class="row g-3">
 
                         <div class="col-md-12">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                <input type="email" class="form-control" id="email" name="email" th:field="*{email}"
+                                       placeholder="Email">
                                 <label for="email">Email</label>
                             </div>
                         </div>
@@ -81,6 +90,7 @@
                         <div class="col-md-12">
                             <div class="form-floating">
                                 <input type="password" class="form-control" id="password" name="password"
+                                       th:field="*{password}"
                                        placeholder="Şifrə">
                                 <label for="password">Şifrə</label>
                             </div>
