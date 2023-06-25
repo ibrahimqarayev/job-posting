@@ -1,6 +1,7 @@
 package az.ijob.jobposting.dto;
 
 import az.ijob.jobposting.model.Category;
+import az.ijob.jobposting.model.Company;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ public class JobDto {
     private Long id;
     private Category category;
     private String position;
-    private String company;
+    private Company company;
     public String city;
     public String oHours;
     private Integer salary;
