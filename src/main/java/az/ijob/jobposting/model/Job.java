@@ -20,7 +20,10 @@ public class Job {
     @JoinColumn(name = "category_id")
     private Category category;
     private String position;
-    private String company;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
     public String city;
     public String oHours;
     private Integer salary;
