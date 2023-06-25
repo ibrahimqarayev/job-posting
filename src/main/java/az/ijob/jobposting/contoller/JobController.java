@@ -17,6 +17,7 @@ public class JobController {
 
     // T E S T !
 
+
     @GetMapping("/index")
     public String index() {
         return "index";
@@ -35,16 +36,6 @@ public class JobController {
     @GetMapping("/contact")
     public String contact() {
         return "contact";
-    }
-
-    @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
     }
 
     @GetMapping("/job-detail")
