@@ -73,7 +73,7 @@
 
                 <div class="wow fadeInUp" data-wow-delay="0.5s">
 
-                    <form th:action="@{/register}" method="POST" th:object="${user}">
+                    <form class="user" th:action="@{/register-new}" th:object="${userDto}" th:method="POST">
                         <div class="row g-3">
                             <div class="col-md-12">
 
@@ -105,12 +105,13 @@
                                 </div>
                             </div>
 
-                            <!--                            <div class="col-12">-->
-                            <!--                                <div class="form-floating">-->
-                            <!--                                    <input type="password" class="form-control" id="rePassword" name="rePassword">-->
-                            <!--                                    <label for="rePassword">Şifrəni təkrar daxil edin</label>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="repeatPassword"
+                                           name="repeatPassword">
+                                    <label for="repeatPassword">Şifrəni təkrar daxil edin</label>
+                                </div>
+                            </div>
 
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Təsdiqlə</button>
