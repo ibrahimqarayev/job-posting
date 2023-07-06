@@ -16,14 +16,9 @@ public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    private String category;
     private String position;
-
-    @ManyToOne
-    @JoinColumn(name = "company_id")
-    private Company company;
+    private String company;
     public String city;
     public String oHours;
     private Integer salary;
