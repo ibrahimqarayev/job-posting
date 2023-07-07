@@ -1,6 +1,7 @@
 package az.ijob.jobposting.service;
 
 
+import az.ijob.jobposting.converter.JobConverter;
 import az.ijob.jobposting.dto.JobDto;
 import az.ijob.jobposting.exception.JobNotFoundException;
 import az.ijob.jobposting.model.Job;
@@ -15,10 +16,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class JobService {
     private final JobRepository jobRepository;
+    private final JobConverter jobConverter;
 
     public List<JobDto> findAllJob() {
         return jobRepository.findAll()
-                .stream().map(this::entityToDto).collect(Collectors.toList());
+                .stream().map(jobConverter::entityToDto).collect(Collectors.toList());
     }
 
     public void addJob(Job job) {
@@ -27,11 +29,11 @@ public class JobService {
 
     public JobDto findById(Long jobId) {
         Job job = jobRepository.findById(jobId).orElseThrow(() -> new JobNotFoundException("Job not found !"));
-        return entityToDto(job);
+        return jobConverter.entityToDto(job);
     }
 
     public void updateJob(JobDto jobDto) {
-        Job job = dtoToEntity(jobDto);
+        Job job = jobConverter.dtoToEntity(jobDto);
         jobRepository.save(job);
     }
 
@@ -40,49 +42,12 @@ public class JobService {
     }
 
     public List<JobDto> searchJob(String query) {
-        return jobRepository.searchJob(query).stream().map(this::entityToDto).collect(Collectors.toList());
+        return jobRepository.searchJob(query).stream().map(jobConverter::entityToDto).collect(Collectors.toList());
     }
 
     public List<JobDto> findByCategory(String category) {
-        return jobRepository.findByCategory(category).stream().map(job -> entityToDto(job)).collect(Collectors.toList());
-    }
-
-
-    //Convert
-    public JobDto entityToDto(Job job) {
-        return new JobDto(
-                job.getId(),
-                job.getCategory(),
-                job.getPosition(),
-                job.getCompany(),
-                job.getCity(),
-                job.getOHours(),
-                job.getSalary(),
-                job.getAge(),
-                job.getEducation(),
-                job.getEmail(),
-                job.getDescription(),
-                job.getRequirements(),
-                job.getCompanyLogo()
-        );
-    }
-
-    public Job dtoToEntity(JobDto jobDto) {
-        return new Job(
-                jobDto.getId(),
-                jobDto.getCategory(),
-                jobDto.getPosition(),
-                jobDto.getCompany(),
-                jobDto.getCity(),
-                jobDto.getOHours(),
-                jobDto.getSalary(),
-                jobDto.getAge(),
-                jobDto.getEducation(),
-                jobDto.getEmail(),
-                jobDto.getDescription(),
-                jobDto.getRequirements(),
-                jobDto.getCompanyLogo()
-        );
+        List<Job> jobs = jobRepository.findByCategory(category);
+        return jobs.stream().map(jobConverter::entityToDto).collect(Collectors.toList());
     }
 
 }
