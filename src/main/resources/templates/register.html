@@ -73,12 +73,34 @@
 
                 <div class="wow fadeInUp" data-wow-delay="0.5s">
 
-                    <form class="user" th:action="@{/register-new}" th:object="${userDto}" th:method="POST">
+                    <div th:if="${result}">
+                        <p class="alert alert-success text-center" th:text="${result}"></p>
+                    </div>
+
+
+                    <div th:if="${success}">
+                        <p class="alert alert-success text-center" th:text="${success}"></p>
+                    </div>
+
+                    <div th:if="${passwordError}">
+                        <p class="alert alert-danger text-center" th:text="${passwordError}"></p>
+                    </div>
+
+                    <div th:if="${emailError}">
+                        <p class="alert alert-danger text-center" th:text="${emailError}"></p>
+                    </div>
+
+                    <div th:if="${errors}">
+                        <p class="alert alert-danger text-center" th:text="${errors}"></p>
+                    </div>
+
+                    <form class="user" th:action="@{/register}" th:object="${userDto}" th:method="POST">
                         <div class="row g-3">
                             <div class="col-md-12">
 
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           th:field="*{name}">
                                     <label for="name">Ad</label>
                                 </div>
                             </div>
@@ -108,7 +130,8 @@
                             <div class="col-12">
                                 <div class="form-floating">
                                     <input type="password" class="form-control" id="repeatPassword"
-                                           name="repeatPassword">
+                                           name="repeatPassword"
+                                           th:field="*{repeatPassword}">
                                     <label for="repeatPassword">Şifrəni təkrar daxil edin</label>
                                 </div>
                             </div>
@@ -116,15 +139,13 @@
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Təsdiqlə</button>
                             </div>
-
                         </div>
                     </form>
                 </div>
-            </div>
+
         </div>
     </div>
 </div>
-<!-- Contact End -->
 
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
