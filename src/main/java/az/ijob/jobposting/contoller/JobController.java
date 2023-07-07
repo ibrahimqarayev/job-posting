@@ -15,9 +15,6 @@ import java.util.List;
 public class JobController {
     private final JobService jobService;
 
-    // T E S T !
-
-
     @GetMapping("/index")
     public String index() {
         return "index";
@@ -82,12 +79,12 @@ public class JobController {
         return "redirect:/jobs";
     }
 
-    @GetMapping("/categories/{category}")
-    public String deleteJob(@PathVariable("category") String category, Model model) {
-        List<JobDto> jobs = jobService.findByCategory(category);
-        model.addAttribute("jobs", jobs);
-        return "jobs";
-    }
+//    @GetMapping("/categories/{category}")
+//    public String deleteJob(@PathVariable("category") String category, Model model) {
+//        List<JobDto> jobs = jobService.findByCategory(category);
+//        model.addAttribute("jobs", jobs);
+//        return "jobs";
+//    }
 
     @GetMapping("/jobs/search")
     public String searchJob(@RequestParam(name = "query") String query, Model model) {
