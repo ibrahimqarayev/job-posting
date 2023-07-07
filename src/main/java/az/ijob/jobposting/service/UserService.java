@@ -15,9 +15,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
-
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 
     public User save(UserDto userDto) {
