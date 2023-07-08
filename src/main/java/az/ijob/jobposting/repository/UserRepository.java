@@ -3,11 +3,8 @@ package az.ijob.jobposting.repository;
 import az.ijob.jobposting.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
 
-    User findByUsername(String username);
-
-    User findFirstByUsername(String username);
+    boolean existsByEmail(String email);
 }
