@@ -1,5 +1,6 @@
 # job-posting
 incomplete
+continue
 <!-- 
 Pages : Ana səhifə , Şirkətlər , Vakansiyalar , Haqqımızda , Əlaqə , Qeydiyyat , Daxil Ol 
 Functions : Vakansiya paylaşım , düzəliş etmək , silmək
