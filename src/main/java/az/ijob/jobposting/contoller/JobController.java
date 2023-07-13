@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -66,7 +67,6 @@ public class JobController {
         return "jobs-add";
     }
 
-
     @PostMapping("/jobs/new")
     public String addJob(@ModelAttribute("job") Job job) {
         jobService.addJob(job);
@@ -79,12 +79,12 @@ public class JobController {
         return "redirect:/jobs";
     }
 
-//    @GetMapping("/categories/{category}")
-//    public String deleteJob(@PathVariable("category") String category, Model model) {
-//        List<JobDto> jobs = jobService.findByCategory(category);
-//        model.addAttribute("jobs", jobs);
-//        return "jobs";
-//    }
+    @GetMapping("/categories/{category}")
+    public String deleteJob(@PathVariable("category") String category, Model model) {
+        List<JobDto> jobs = jobService.findByCategory(category);
+        model.addAttribute("jobs", jobs);
+        return "jobs";
+    }
 
     @GetMapping("/jobs/search")
     public String searchJob(@RequestParam(name = "query") String query, Model model) {
@@ -100,11 +100,9 @@ public class JobController {
         return "jobs-edit";
     }
 
-
     @PostMapping("/jobs/{jobId}/edit")
     public String updateJob(@PathVariable("jobId") Long jobId, @ModelAttribute("job") JobDto job) {
-        job.setId(jobId);
-        jobService.updateJob(job);
+        jobService.updateJob(jobId, job);
         return "redirect:jobs";
     }
 
