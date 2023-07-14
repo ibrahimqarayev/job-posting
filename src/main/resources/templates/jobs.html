@@ -67,7 +67,9 @@
             <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job Listing</h1>
             <di class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
 
+
                 <div class="tab-content">
+
                     <div id="tab-1" class="tab-pane fade show p-0 active">
                         <div class="job-item p-4 mb-4" th:each="job : ${jobs}">
                             <div class="row g-4">
@@ -76,28 +78,33 @@
                                          th:src="@{'data:image/jpeg;base64,' + ${job.companyLogo}}"
                                          alt=""
                                          style="width: 80px; height: 80px;">
+
                                     <div class="text-start ps-4">
                                         <h5 class="mb-3" th:text="${job.position}"></h5>
-                                        <span class="text-truncate me-3"><i
-                                                class="fa fa-map-marker-alt text-primary me-2"></i>
-                                        <span th:text="${job.city}"></span>
+
+                                        <span class="text-truncate me-3">
+                                            <i class="fa fa-map-marker-alt text-primary me-2"></i>
+                                            <span th:text="${job.city}"></span>
                                         </span>
-                                        <span class="text-truncate me-3" th:text="${job.oHours}">
-                                            <i class="far fa-clock text-primary me-2"></i></span>
-                                        <span class="text-truncate me-0"><i
-                                                class="far fa-money-bill-alt text-primary me-2"></i>
-                                         <span th:text="${job.salary}"></span>
+
+                                        <span class="text-truncate me-3">
+                                            <i class="far fa-clock text-primary me-2"></i>
+                                            <span th:text="${job.employmentType}"></span>
                                         </span>
+
+                                        <span class="text-truncate me-0">
+                                            <i class="far fa-money-bill-alt text-primary me-2"></i>
+                                             <span th:text="${job.salary}"></span>
+                                        </span>
+
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                     <div class="d-flex mb-3">
-                                        <a class="btn btn-light btn-square me-3" href=""><i
-                                                class="far fa-heart text-primary"></i></a>
-                                        <a class="btn btn-primary" th:href="@{/job-detail}">Ətraflı</a>
+                                        <a class="btn btn-primary" th:href="@{/jobs/{id}(id=${job.id})}">Ətraflı</a>
                                     </div>
-                                    <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date
-                                        Line: 01 Jan, 2045</small>
+                                    <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"
+                                                                    th:text="${job.creationDate}"></i></small>
                                 </div>
                             </div>
                         </div>
@@ -468,7 +475,7 @@
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="copyright">
+        <div class="copyright text-center">
             &copy; <a class="border-bottom" href="#">JOB.AZ</a> , Bütün hüquqlar qorunur
         </div>
     </div>
