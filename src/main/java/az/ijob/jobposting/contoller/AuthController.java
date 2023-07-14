@@ -35,7 +35,8 @@ public class AuthController {
         try {
             if (result.hasErrors()) {
                 model.addAttribute("userDto", userDto);
-                model.addAttribute("result",result.getFieldError().getDefaultMessage());
+                model.addAttribute("result", result.getFieldError().getDefaultMessage());
+                result.getFieldError().getDefaultMessage().toString();
                 result.toString();
                 return "register";
             }
@@ -69,17 +70,6 @@ public class AuthController {
             model.addAttribute("errors", "Can not registered because server error !");
         }
         return "register";
-    }
-
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @GetMapping("/forgot-password")
-    public String forgotPassword() {
-        return "forgot-password";
     }
 
 
