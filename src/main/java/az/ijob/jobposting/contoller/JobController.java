@@ -3,9 +3,11 @@ package az.ijob.jobposting.contoller;
 import az.ijob.jobposting.dto.JobDto;
 import az.ijob.jobposting.model.Job;
 import az.ijob.jobposting.service.JobService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -68,8 +70,24 @@ public class JobController {
     }
 
     @PostMapping("/jobs/new")
-    public String addJob(@ModelAttribute("job") Job job) {
-        jobService.addJob(job);
+    public String addJob(@Valid @ModelAttribute("job") Job job,
+                         BindingResult result,
+                         Model model) {
+
+        try {
+            if (result.hasErrors()) {
+                model.addAttribute("job", job);
+                model.addAttribute("result", result.getFieldError().getDefaultMessage());
+                result.getFieldError().getDefaultMessage().toString();
+                return "jobs-add";
+            }
+            jobService.addJob(job);
+            model.addAttribute("job", job);
+            model.addAttribute("success", "Vakansiya uğurla paylaşıldı");
+        } catch (Exception ex) {
+            model.addAttribute("errors", "Vakansiya paylaşılarkən xəta baş verdi");
+        }
+
         return "redirect:/jobs";
     }
 
