@@ -71,16 +71,38 @@
             <div class="row g-4">
 
 
+                <div th:if="${result}">
+                    <p class="alert alert-success text-center" th:text="${result}"></p>
+                </div>
+
+                <div th:if="${success}">
+                    <p class="alert alert-success text-center" th:text="${success}"></p>
+                </div>
+
+                <div th:if="${errors}">
+                    <p class="alert alert-success text-center" th:text="${errors}"></p>
+                </div>
+
+
                 <div class="wow fadeInUp" data-wow-delay="0.5s">
 
                     <form role="form" th:action="@{/jobs/new}" method="POST" th:object="${job}"
                           enctype="multipart/form-data">
                         <div class="row g-3">
 
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="company" name="company"
+                                           th:field="*{company}">
+                                    <label for="company">Şirkət</label>
+                                </div>
+                            </div>
+
                             <div class="col-md-12">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="category" name="category"
-                                           th:object="*{category}">
+                                           th:field="*{category}">
                                     <label for="category">Kateqoriya</label>
                                 </div>
                             </div>
@@ -90,68 +112,6 @@
                                     <input type="text" class="form-control" id="position" name="position"
                                            th:field="*{position}">
                                     <label for="position">Vəzifə</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="company" name="company"
-                                           th:object="*{company}">
-                                    <label for="company">Şirkət</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="city" name="city" th:field="*{city}">
-                                    <label for="city">Şəhər</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <select class="form-control" id="oHours" name="oHours" th:field="*{oHours}">
-                                        <option value="" disabled selected>İş saatı</option>
-                                        <option value="Part Time">Part Time</option>
-                                        <option value="Full Time">Full Time</option>
-                                    </select>
-                                    <label for="oHours">İş saatı</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="number" class="form-control" id="salary" name="salary"
-                                           th:field="*{salary}">
-                                    <label for="salary">Maaş</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="number" class="form-control" id="age" name="age" th:field="*{age}">
-                                    <label for="age">Yaş</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <select class="form-control" id="education" name="education"
-                                            th:field="*{education}">
-                                        <option value="" disabled selected>Təhsil səviyyəsini seçin</option>
-                                        <option value="developer">Vacib deyil</option>
-                                        <option value="designer">Orta</option>
-                                        <option value="manager">Ali</option>
-                                    </select>
-                                    <label for="education">Təhsil</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" name="email"
-                                           th:field="*{email}">
-                                    <label for="email">E-mail</label>
                                 </div>
                             </div>
 
@@ -172,30 +132,201 @@
                                 </div>
                             </div>
 
-                            <!--                            <div class="col-12">-->
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <select class="form-control" id="employmentType" name="employmentType"
+                                            th:field="*{employmentType}">
+                                        <option value="" selected></option>
+                                        <option value="" disabled selected>Məşğulluq növünü seçin</option>
+                                        <option value="Part Time">Part Time</option>
+                                        <option value="Full Time">Full Time</option>
+                                    </select>
+                                    <label for="employmentType">Məşğulluq növü</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="salary" name="salary"
+                                           th:field="*{salary}">
+                                    <label for="salary">Maaş</label>
+                                </div>
+                            </div>
+
+                            <!--                            <div class="col-md-12">-->
                             <!--                                <div class="form-floating">-->
-                            <!--                                    <input type="file" class="form-control" id="companyLogo" name="companyLogo"-->
-                            <!--                                           th:field="*{companyLogo}">-->
-                            <!--                                    <label for="companyLogo">Şirkət logosu</label>-->
+                            <!--                                    <input type="text" class="form-control" id="city" name="city" th:field="*{city}">-->
+                            <!--                                    <label for="city">Şəhər</label>-->
                             <!--                                </div>-->
                             <!--                            </div>-->
 
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Paylaş</button>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+
+                                    <select class="form-control" id="city" name="city"
+                                            th:field="*{city}">
+
+<!--                                    <select class="selectpicker border rounded" data-style="btn-black" data-width="100%"-->
+<!--                                            data-live-search="true" title="Select Region" id="city" name="city"-->
+<!--                                            th:field="*{city}">-->
+
+<!--                                        <option selected value="">Şəhər</option>-->
+                                        <option value="" selected></option>
+                                        <option disabled selected value="">Şəhər seçin</option>-->
+                                        <option value="Ağcabədi">Ağcabədi</option>
+                                        <option value="Ağdam">Ağdam</option>
+                                        <option value="Ağdaş">Ağdaş</option>
+                                        <option value="Ağdərə">Ağdərə</option>
+                                        <option value="Ağstafa">Ağstafa</option>
+                                        <option value="Ağsu">Ağsu</option>
+                                        <option value="Astara">Astara</option>
+                                        <option value="Babək">Babək</option>
+                                        <option value="Bakı">Bakı</option>
+                                        <option value="Balakən">Balakən</option>
+                                        <option value="Beyləqan">Beyləqan</option>
+                                        <option value="Bərdə">Bərdə</option>
+                                        <option value="Biləsuvar">Biləsuvar</option>
+                                        <option value="Cəbrayıl">Cəbrayıl</option>
+                                        <option value="Cəlilabad">Cəlilabad</option>
+                                        <option value="Culfa">Culfa</option>
+                                        <option value="Daşkəsən">Daşkəsən</option>
+                                        <option value="Dəliməmmədli">Dəliməmmədli</option>
+                                        <option value="Füzuli">Füzuli</option>
+                                        <option value="Gədəbəy">Gədəbəy</option>
+                                        <option value="Gəncə">Gəncə</option>
+                                        <option value="Goranboy">Goranboy</option>
+                                        <option value="Göyçay">Göyçay</option>
+                                        <option value="Göygöl">Göygöl</option>
+                                        <option value="Göytəpə">Göytəpə</option>
+                                        <option value="Hacıqabul">Hacıqabul</option>
+                                        <option value="Horadiz">Horadiz</option>
+                                        <option value="Xaçmaz">Xaçmaz</option>
+                                        <option value="Xankəndi">Xankəndi</option>
+                                        <option value="Xocalı">Xocalı</option>
+                                        <option value="Xocavənd">Xocavənd</option>
+                                        <option value="Xırdalan">Xırdalan</option>
+                                        <option value="Xızı">Xızı</option>
+                                        <option value="Xudat">Xudat</option>
+                                        <option value="İmişli">İmişli</option>
+                                        <option value="İsmayıllı">İsmayıllı</option>
+                                        <option value="Kəlbəcər">Kəlbəcər</option>
+                                        <option value="Kürdəmir">Kürdəmir</option>
+                                        <option value="Qax">Qax</option>
+                                        <option value="Qazax">Qazax</option>
+                                        <option value="Qəbələ">Qəbələ</option>
+                                        <option value="Qobustan">Qobustan</option>
+                                        <option value="Qovlar">Qovlar</option>
+                                        <option value="Quba">Quba</option>
+                                        <option value="Qubadlı">Qubadlı</option>
+                                        <option value="Qusar">Qusar</option>
+                                        <option value="Laçın">Laçın</option>
+                                        <option value="Lerik">Lerik</option>
+                                        <option value="Lənkəran">Lənkəran</option>
+                                        <option value="Liman">Liman</option>
+                                        <option value="Masallı">Masallı</option>
+                                        <option value="Mingəçevir">Mingəçevir</option>
+                                        <option value="Naftalan">Naftalan</option>
+                                        <option value="Naxçıvan">Naxçıvan</option>
+                                        <option value="Neftçala">Neftçala</option>
+                                        <option value="Oğuz">Oğuz</option>
+                                        <option value="Ordubad">Ordubad</option>
+                                        <option value="Saatlı">Saatlı</option>
+                                        <option value="Sabirabad">Sabirabad</option>
+                                        <option value="Salyan">Salyan</option>
+                                        <option value="Samux">Samux</option>
+                                        <option value="Siyəzən">Siyəzən</option>
+                                        <option value="Sumqayıt">Sumqayıt</option>
+                                        <option value="Şabran">Şabran</option>
+                                        <option value="Şahbuz">Şahbuz</option>
+                                        <option value="Şamaxı">Şamaxı</option>
+                                        <option value="Şəki">Şəki</option>
+                                        <option value="Şəmkir">Şəmkir</option>
+                                        <option value="Şərur">Şərur</option>
+                                        <option value="Şirvan">Şirvan</option>
+                                        <option value="Şuşa">Şuşa</option>
+                                        <option value="Tərtər">Tərtər</option>
+                                        <option value="Tovuz">Tovuz</option>
+                                        <option value="Ucar">Ucar</option>
+                                        <option value="Yardımlı">Yardımlı</option>
+                                        <option value="Yevlax">Yevlax</option>
+                                        <option value="Zaqatala">Zaqatala</option>
+                                        <option value="Zəngilan">Zəngilan</option>
+                                        <option value="Zərdab">Zərdab</option>
+                                    </select>
+                                    <label for="city">Şəhər</label>
+                                </div>
+                            </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="age" name="age" th:field="*{age}">
+                                <label for="age">Yaş</label>
                             </div>
                         </div>
-                    </form>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-control" id="education" name="education"
+                                        th:field="*{education}">
+                                    <option value="" selected></option>
+                                    <option disabled selected value="">Şəhər seçin</option>-->
+                                    <option value="developer">Vacib deyil</option>
+                                    <option value="designer">Orta</option>
+                                    <option value="manager">Ali</option>
+                                </select>
+                                <label for="education">Təhsil</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="relevantPerson" name="relevantPerson"
+                                       th:field="*{relevantPerson}">
+                                <label for="relevantPerson">Əlqədar şəxs</label>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+                                       th:field="*{phoneNumber}">
+                                <label for="phoneNumber">Əlaqə nömrəsi</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="email" name="email"
+                                       th:field="*{email}">
+                                <label for="email">E-mail</label>
+                            </div>
+                        </div>
+
+                        <!--                            <div class="col-12">-->
+                        <!--                                <div class="form-floating">-->
+                        <!--                                    <input type="file" class="form-control" id="companyLogo" name="companyLogo"-->
+                        <!--                                           th:field="*{companyLogo}">-->
+                        <!--                                    <label for="companyLogo">Şirkət logosu</label>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">Paylaş</button>
+                        </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- Contact End -->
 
 
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="copyright">
+    <div class="copyright text-center">
         &copy; <a class="border-bottom" th:href="@{/index}">JOB.AZ</a> , Bütün hüquqlar qorunur
     </div>
 </div>
