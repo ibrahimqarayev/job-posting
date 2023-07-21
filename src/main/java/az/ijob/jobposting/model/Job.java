@@ -11,19 +11,20 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "vacancies")
+@Table(name = "jobs")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Job extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "job")
     private Long id;
     @Column(name = "company")
     @NotBlank(message = "Şirkət adı boş buraxıla bilməz")
     private String company;
-    @Column(name = "category")
-    @NotBlank(message = "Kateqoriya boş buraxıla bilməz")
-    private String category;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    private Category category;
     @Column(name = "position")
     @NotBlank(message = "Vəzifə boş buraxıla bilməz")
     private String position;
