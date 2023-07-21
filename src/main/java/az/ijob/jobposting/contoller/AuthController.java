@@ -3,6 +3,7 @@ package az.ijob.jobposting.contoller;
 import az.ijob.jobposting.converter.JobConverter;
 import az.ijob.jobposting.dto.UserDto;
 import az.ijob.jobposting.model.User;
+import az.ijob.jobposting.request.LoginRequest;
 import az.ijob.jobposting.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -72,5 +73,47 @@ public class AuthController {
         return "register";
     }
 
+
+    @GetMapping("/login")
+    public String loginForm(Model model) {
+        model.addAttribute("loginRequest", new LoginRequest());
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@Valid @ModelAttribute("loginRequest") LoginRequest loginRequest,
+                        BindingResult result,
+                        Model model) {
+        try {
+            if (result.hasErrors()) {
+                model.addAttribute("loginRequest", loginRequest);
+                model.addAttribute("result", result.getFieldError().getDefaultMessage());
+                result.getFieldError().getDefaultMessage().toString();
+                result.toString();
+                return "login";
+            }
+
+            String email = loginRequest.getEmail();
+            boolean check = userService.existsByEmail(email);
+
+            if (!check) {
+                model.addAttribute("loginRequest", loginRequest);
+                model.addAttribute("emailError", "Email not registered" + email);
+                System.out.println("Email not registered");
+                return "login";
+            }
+
+            User user = userService.findByEmail(email);
+            boolean matches = passwordEncoder.matches(loginRequest.getPassword(), user.getPassword());
+            if (matches) {
+                return "dashboard";
+            } else {
+                model.addAttribute("loginError", "Email or password wrong");
+            }
+        } catch (Exception e) {
+            model.addAttribute("errors", e.getCause().toString());
+        }
+        return "login";
+    }
 
 }
