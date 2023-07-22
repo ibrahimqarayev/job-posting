@@ -7,8 +7,6 @@ import az.ijob.jobposting.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
@@ -19,10 +17,10 @@ public class CategoryService {
     }
 
     public CategoryDto findById(Long id) {
-        Optional<Category> optionalCategory = categoryRepository.findById(id);
-        if (optionalCategory.isPresent()) {
-            return CategoryDto.convertToDto(optionalCategory.get());
-        }
-        throw new CategoryNotFoundException("Category not found with id " + id);
+        return CategoryDto.convertToDto(getCategoryById(id));
+    }
+
+    protected Category getCategoryById(Long id) {
+        return categoryRepository.findById(id).orElseThrow(() -> new CategoryNotFoundException("Category not found id " + id));
     }
 }
