@@ -67,6 +67,26 @@
             <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Daxil Ol</h1>
 
 
+            <div th:if="${result}">
+                <p class="alert alert-success text-center" th:text="${result}"></p>
+            </div>
+
+            <div th:if="${success}">
+                <p class="alert alert-success text-center" th:text="${success}"></p>
+            </div>
+
+            <div th:if="${loginError}">
+                <p class="alert alert-danger text-center" th:text="${loginError}"></p>
+            </div>
+
+            <div th:if="${emailError}">
+                <p class="alert alert-danger text-center" th:text="${emailError}"></p>
+            </div>
+
+            <div th:if="${errors}">
+                <p class="alert alert-danger text-center" th:text="${errors}"></p>
+            </div>
+
             <div th:if="${param.error}" class="alert alert-danger">
                 Email vəya şifrə yalnışdır !
             </div>
@@ -76,7 +96,7 @@
             </div>
 
             <div class="wow fadeInUp" data-wow-delay="0.5s">
-                <form th:action="@{/login}" th:method="POST" th:object="${user}">
+                <form th:action="@{/login}" method="POST" th:object="${loginRequest}">
                     <div class="row g-3">
 
                         <div class="col-md-12">
