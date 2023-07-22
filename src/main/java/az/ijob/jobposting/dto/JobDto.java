@@ -1,11 +1,6 @@
 package az.ijob.jobposting.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Lob;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import az.ijob.jobposting.model.Job;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +14,7 @@ import java.time.LocalDateTime;
 public class JobDto {
     private Long id;
     private String company;
-    private String category;
+    private Long categoryId;
     private String position;
     private String salary;
     private String description;
