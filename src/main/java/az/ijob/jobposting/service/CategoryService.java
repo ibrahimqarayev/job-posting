@@ -1,7 +1,7 @@
 package az.ijob.jobposting.service;
 
 import az.ijob.jobposting.dto.CategoryDto;
-import az.ijob.jobposting.exception.CategoryNotFoundException;
+import az.ijob.jobposting.exception.ResourceNotFoundException;
 import az.ijob.jobposting.model.Category;
 import az.ijob.jobposting.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +21,6 @@ public class CategoryService {
     }
 
     protected Category getCategoryById(Long id) {
-        return categoryRepository.findById(id).orElseThrow(() -> new CategoryNotFoundException("Category not found id " + id));
+        return categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Category not found id " + id));
     }
 }
