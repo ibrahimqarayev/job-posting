@@ -1,6 +1,5 @@
 package az.ijob.jobposting.contoller;
 
-import az.ijob.jobposting.converter.JobConverter;
 import az.ijob.jobposting.dto.UserDto;
 import az.ijob.jobposting.model.User;
 import az.ijob.jobposting.request.LoginRequest;
