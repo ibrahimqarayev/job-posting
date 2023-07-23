@@ -43,11 +43,6 @@ public class JobController {
         return "job-detail";
     }
 
-    @GetMapping("/reset-password")
-    public String resetPassword() {
-        return "reset-password";
-    }
-
     @GetMapping("/jobs")
     public String jobs(Model model) {
         List<JobDto> jobs = jobService.findAllJob();
@@ -70,7 +65,7 @@ public class JobController {
     }
 
     @PostMapping("/jobs/new")
-    public String addJob(@Valid @ModelAttribute("job") Job job,
+    public String addJob(@Valid @ModelAttribute("job") JobDto job,
                          BindingResult result,
                          Model model) {
 
