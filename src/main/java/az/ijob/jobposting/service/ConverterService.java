@@ -1,6 +1,8 @@
 package az.ijob.jobposting.service;
 
+import az.ijob.jobposting.dto.CategoryDto;
 import az.ijob.jobposting.dto.JobDto;
+import az.ijob.jobposting.model.Category;
 import az.ijob.jobposting.model.Job;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
