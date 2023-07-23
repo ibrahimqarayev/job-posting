@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Job extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "job")
+    @Column(name = "job_id")
     private Long id;
     @Column(name = "company")
     @NotBlank(message = "Şirkət adı boş buraxıla bilməz")
