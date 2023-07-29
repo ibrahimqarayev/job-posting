@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateJobRequest {
-    private Long companyId;
+    private String companyName;
     private Long categoryId;
     private String position;
     private String description;
