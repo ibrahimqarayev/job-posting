@@ -19,17 +19,18 @@ public class Job extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "job_id")
     private Long id;
-    @Column(name = "company")
-    @NotBlank(message = "Şirkət adı boş buraxıla bilməz")
-    private String company;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id", referencedColumnName = "company_id")
+    private Company company;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
+
     @Column(name = "position")
     @NotBlank(message = "Vəzifə boş buraxıla bilməz")
     private String position;
-    @Column(name = "salary")
-    private String salary;
     @Column(name = "description")
     private String description;
     @Column(name = "requirements")
@@ -38,8 +39,6 @@ public class Job extends BaseEntity {
     public String employmentType;
     @Column(name = "city")
     private String city;
-    @Column(name = "age")
-    private int age;
     @Column(name = "education")
     private String education;
     @Column(name = "relevant_person")
