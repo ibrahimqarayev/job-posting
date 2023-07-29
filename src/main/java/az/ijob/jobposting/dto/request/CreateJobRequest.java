@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CreateJobRequest {
     private Long id;
-    private Long companyId;
+    private String companyName;
     private Long categoryId;
     private String position;
     private String description;
