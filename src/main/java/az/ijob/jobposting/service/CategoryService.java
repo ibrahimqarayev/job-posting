@@ -16,11 +16,8 @@ public class CategoryService {
         return CategoryDto.convertToDto(categoryRepository.save(category));
     }
 
-    public CategoryDto findById(Long id) {
-        return CategoryDto.convertToDto(getCategoryById(id));
-    }
 
-    protected Category getCategoryById(Long id) {
+    protected Category finById(Long id) {
         return categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Category not found id " + id));
     }
 }

@@ -17,4 +17,8 @@ public class Company {
     private Long id;
     @Column(name = "name")
     private String name;
+
+    public Company(String name) {
+        this.name = name;
+    }
 }
