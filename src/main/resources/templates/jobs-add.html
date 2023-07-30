@@ -99,11 +99,125 @@
                                 <div class="form-floating">
                                     <select class="form-control" id="categoryId" name="categoryId"
                                             th:field="*{categoryId}">
+                                        <option value="" disabled selected></option>
+                                        <option value="">Kateqoriya seçin</option>
+                                        <option value="1" class="bold-text">IT & Development (Proqramlaşdırma)</option>
+                                        <option value="2">Web development (Veb proqramlaşdırma)</option>
+                                        <option value="3">Mobile development (Mobil proqramlaşdırma)</option>
+                                        <option value="4">Şəbəkə (Network)</option>
+                                        <option value="5">Development (Proqramlaşdırma)</option>
+                                        <option value="6">Help desk</option>
+                                        <option value="7">IT security</option>
+                                        <option value="8">Data science</option>
+                                        <option value="9">Sistem administratoru</option>
+                                        <option value="10">QA engineer</option>
+                                        <option value="11">IT Biznes analitik</option>
+                                        <option value="12" class="bold-text">Bank sahəsi</option>
+                                        <option value="13">Kredit mütəxəssisi</option>
+                                        <option value="14">Analitik</option>
+                                        <option value="15">Əməliyyatçı</option>
+                                        <option value="16">Digər mütəxəssis</option>
+                                        <option value="17">Şöbə müdiri</option>
+                                        <option value="18">Xarici nəzarət</option>
+                                        <option value="19" class="bold-text">Rəhbər vəzifələr</option>
+                                        <option value="20">Menecment</option>
+                                        <option value="22">Təlimçi</option>
+                                        <option value="23">Menecer</option>
+                                        <option value="24" class="bold-text">Marketinq və Satış</option>
+                                        <option value="25">Kontent menecer</option>
+                                        <option value="26">Satıcı</option>
+                                        <option value="27">Satış təmsilçisi</option>
+                                        <option value="28">SMM</option>
+                                        <option value="29">Satınalma</option>
+                                        <option value="30">Analitik</option>
+                                        <option value="31">Merçendayzer</option>
+                                        <option value="32">Layihə meneceri</option>
+                                        <option value="33">Copywriter</option>
+                                        <option value="34">İctimayətlə əlaqələr</option>
+                                        <option value="35">Beynəlxalq əlaqələr</option>
+                                        <option value="36" class="bold-text">Maliyyə və mühasibatlıq</option>
+                                        <option value="37">Kassir</option>
+                                        <option value="38">Xəzinədar</option>
+                                        <option value="39">Biznes inkişafı</option>
+                                        <option value="40">İqtisadçı</option>
+                                        <option value="41">Vergi</option>
+                                        <option value="42" class="bold-text">Xidmət</option>
+                                        <option value="43">Mühəndis</option>
+                                        <option value="44">Mexanik</option>
+                                        <option value="45">Texnik</option>
+                                        <option value="46">Elektrik</option>
+                                        <option value="47">Administrasiya</option>
+                                        <option value="48">Mühafizə</option>
+                                        <option value="49">SƏTƏM</option>
+                                        <option value="50">Sürücü</option>
+                                        <option value="51">Anbardar</option>
+                                        <option value="52">Təminat və təchizat</option>
+                                        <option value="53">Çilingər</option>
+                                        <option value="54">Kuryer</option>
+                                        <option value="55">Fotoqraf</option>
+                                        <option value="56">Florist</option>
+                                        <option value="57">Redaktor</option>
+                                        <option value="58">Daşınmaz əmlak</option>
+                                        <option value="59">Videoqraf</option>
+                                        <option value="60">Jurnalist</option>
+                                        <option value="61" class="bold-text">Dizayn</option>
+                                        <option value="63">Qrafik dizayner</option>
+                                        <option value="63">İnteryer dizayner</option>
+                                        <option value="64">Reklam</option>
+                                        <option value="65" class="bold-text">İnsan resursları (HR)</option>
+                                        <option value="66" class="bold-text">Sığorta sahəsi</option>
+                                        <option value="67" class="bold-text">Risklərin idarə edilməsi</option>
+                                        <option value="68">Daxili nəzarət</option>
+                                        <option value="69">Daxili audit</option>
+                                        <option value="70">Keyfiyyətə nəzarət</option>
+                                        <option value="71" class="bold-text">Tibb sahəsi</option>
+                                        <option value="72">Həkim</option>
+                                        <option value="73">Əczaçı</option>
+                                        <option value="74">Tibb bacısı</option>
+                                        <option value="75">Psixoloq</option>
+                                        <option value="76">Stomatoloq</option>
+                                        <option value="77">Laborant</option>
+                                        <option value="78" class="bold-text">Təhsil sahəsi</option>
+                                        <option value="79">Müəllim</option>
+                                        <option value="80" class="bold-text">Hotelçilik</option>
+                                        <option value="81">Hostes</option>
+                                        <option value="82" class="bold-text">Restoran işi</option>
+                                        <option value="83">Ofisiant</option>
+                                        <option value="84" class="bold-text">Digər sahələr</option>
+                                        <option value="85">Xadimə</option>
+                                        <option value="86">Təcrübə</option>
+                                        <option value="87">Logistika</option>
+                                        <option value="88">Mütəxəssis</option>
+                                        <option value="89">Köməkçi</option>
+                                        <option value="90">Təmizlikçi</option>
+                                        <option value="91">Supervisor</option>
+                                        <option value="92">Kargüzarlıq</option>
+                                        <option value="93">Turizm</option>
+                                        <option value="94">Dərzi</option>
+                                        <option value="95">Baytar</option>
+                                        <option value="96">Aqronom</option>
+                                        <option value="97" class="bold-text">Tikinti</option>
+                                        <option value="98">Usta</option>
+                                        <option value="99">Fəhlə</option>
+                                        <option value="100">Memar</option>
+                                        <option value="101">Təmir</option>
+                                        <option value="102" class="bold-text">Hüquqşünas</option>
+                                        <option value="103" class="bold-text">Qeydiyyat və reception (resepşn)</option>
+                                        <option value="104">Reception (resepşn)</option>
+                                        <option value="105">Operator</option>
+                                        <option value="106">Assistant</option>
+                                        <option value="25">Müştəri məmnuniyyəti</option>
+                                        <option value="25">Ofis meneceri</option>
+                                        <option value="25">İşə qəbul</option>
+                                        <option value="25">Qeydiyyatçı</option>
+                                        <option value="25" class="bold-text">Kulinariya</option>
+                                        <option value="25">Aşpaz</option>
+                                        <option value="25" class="bold-text">İnzibati dəstək</option>
+                                        <option value="25">Tərcümə</option>
 
-                                        <option value="1">IT</option>
-                                        <option value="2">UX</option>
+
                                     </select>
-                                    <label for="categoryId">Məşğulluq növü</label>
+                                    <label for="categoryId">Kateqoriya</label>
                                 </div>
                             </div>
 
@@ -294,12 +408,12 @@
                             </div>
 
 
-<!--                            <div class="form-group">-->
-<!--                                <label class="btn btn-dark btn-md btn-file">-->
-<!--                                    Logo yüklə<input type="file" id="companyLogo" name="companyLogo"-->
-<!--                                                     th:field="*{companyLogo}" hidden>-->
-<!--                                </label>-->
-<!--                            </div>-->
+                            <!--                            <div class="form-group">-->
+                            <!--                                <label class="btn btn-dark btn-md btn-file">-->
+                            <!--                                    Logo yüklə<input type="file" id="companyLogo" name="companyLogo"-->
+                            <!--                                                     th:field="*{companyLogo}" hidden>-->
+                            <!--                                </label>-->
+                            <!--                            </div>-->
 
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Paylaş</button>
