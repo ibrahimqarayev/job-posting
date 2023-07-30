@@ -12,6 +12,8 @@ import az.ijob.jobposting.repository.JobRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +26,9 @@ public class JobService {
     private final CompanyService companyService;
 
     public JobDto addJob(CreateJobRequest createRequest) {
-        Job job = jobRepository.save(converter.toEntity(createRequest));
-        return converter.toDto(job);
+        Job job = converter.toEntity(createRequest);
+        job.setCreationDate(LocalDateTime.now());
+        return converter.toDto(jobRepository.save(job));
     }
 
     public List<JobDto> findAllJob() {
