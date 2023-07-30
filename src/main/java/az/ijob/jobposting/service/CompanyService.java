@@ -5,6 +5,7 @@ import az.ijob.jobposting.repository.CompanyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,7 +15,16 @@ public class CompanyService {
 
     public Company findByName(String name) {
         Optional<Company> optionalCompany = companyRepository.findByName(name);
-        return optionalCompany.orElseGet(() -> new Company(name));
+        return optionalCompany.orElseGet(() -> saveCompany(name));
+    }
+
+    public List<Company> findAll() {
+        return companyRepository.findAll();
+    }
+
+    public Company saveCompany(String name) {
+        Company company = new Company(name);
+        return companyRepository.save(company);
     }
 
 }
