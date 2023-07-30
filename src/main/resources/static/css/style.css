@@ -338,3 +338,7 @@
     padding-right: 0;
     border-right: none;
 }
+
+.bold-text {
+    font-weight: bold;
+}
