@@ -20,7 +20,7 @@ public class BaseEntity {
     private LocalDateTime expirationDate;
 
     @Column(name = "number_of_views")
-    private int numberOfViews=0;
+    private int numberOfViews = 0;
 
     @Column(name = "serial_number")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
