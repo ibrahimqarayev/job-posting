@@ -104,7 +104,7 @@
 
                                     <small class="text-truncate">
                                         <i class="far fa-calendar-alt text-primary me-2"></i>
-                                        <span th:text="${job.creationDate.dayOfMonth} + '/' + ${job.creationDate.monthValue} + '/'+${job.creationDate.year}"></span>
+                                        <span  th:if="${job != null}" th:text="${job.creationDate.dayOfMonth} + '/' + ${job.creationDate.monthValue} + '/'+${job.creationDate.year}"></span>
                                     </small>
 
                                 </div>
