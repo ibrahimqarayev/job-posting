@@ -2,7 +2,7 @@ package az.ijob.jobposting.contoller;
 
 import az.ijob.jobposting.dto.UserDto;
 import az.ijob.jobposting.model.User;
-import az.ijob.jobposting.request.LoginRequest;
+import az.ijob.jobposting.dto.request.LoginRequest;
 import az.ijob.jobposting.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -46,7 +46,7 @@ public class AuthController {
 
             if (check) {
                 model.addAttribute("userDto", userDto);
-                model.addAttribute("emailError", "You email has been registered !");
+                model.addAttribute("emailError", "Bu email ünvanıyla artıq qeydiyyatdan keçilib !");
                 System.out.println("User not null !");
                 return "register";
             }
@@ -55,19 +55,19 @@ public class AuthController {
                 userService.save(userDto);
                 System.out.println("User saved !");
                 model.addAttribute("userDto", userDto);
-                model.addAttribute("success", "Registered successfully !");
+                model.addAttribute("success", "Uğurla qeydiyyatdan keçildi !");
             } else {
                 model.addAttribute("userDto", userDto);
-                model.addAttribute("passwordError", "Password is not same !");
+                model.addAttribute("passwordError", "Şifrələr eyni deyil !");
                 System.out.println("Password is not same !");
                 return "register";
             }
             userService.save(userDto);
             model.addAttribute("userDto", userDto);
-            model.addAttribute("success", "Registered successfully !");
+            model.addAttribute("success", "Uğurla qeydiyyatdan keçildi !");
 
         } catch (Exception e) {
-            model.addAttribute("errors", "Can not registered because server error !");
+            model.addAttribute("errors", "Qeydiyyat zamanı xəta baş verdi !");
         }
         return "register";
     }
@@ -105,9 +105,9 @@ public class AuthController {
             User user = userService.findByEmail(email);
             boolean matches = passwordEncoder.matches(loginRequest.getPassword(), user.getPassword());
             if (matches) {
-                return "dashboard";
+                return "my-jobs";
             } else {
-                model.addAttribute("loginError", "Email or password wrong");
+                model.addAttribute("loginError", "Email vəya şifrə yalnışdır !");
             }
         } catch (Exception e) {
             model.addAttribute("errors", e.getCause().toString());
