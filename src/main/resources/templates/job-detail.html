@@ -70,13 +70,14 @@
             <div class="row gy-5 gx-4">
                 <div class="col-lg-8">
                     <div class="d-flex align-items-center mb-5">
-                        <img class="flex-shrink-0 img-fluid border rounded" th:src="@{img/com-logo-2.jpg}" alt=""
+                        <img class="flex-shrink-0 img-fluid border rounded"
+                             th:src="'data:image/jpeg;base64,' + ${job.companyLogo}" alt=""
                              style="width: 80px; height: 80px;">
                         <div class="text-start ps-4">
                             <h3 class="mb-3" th:text="${job.position}"></h3>
 
                             <span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>
-                                <span th:text="${job.companyName}"></span>
+                                <span th:text="${job.company.name}"></span>
                             </span>
 
                             <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>
@@ -96,6 +97,15 @@
                         <p th:text="${job.description}"></p>
                         <h4 class="mb-3">Tələblər</h4>
                         <p th:text="${job.requirements}"></p>
+                    </div>
+
+                    <div class="mb-3">
+                        <h6 class="mb-3">Əlaqədar şəxs</h6>
+                        <p th:text="${job.relevantPerson}"></p>
+                        <h6 class="mb-3">Əlaqə nömrəsi</h6>
+                        <p th:text="${job.phoneNumber}"></p>
+                        <h6 class="mb-3">Email ünvanı</h6>
+                        <p th:text="${job.email}"></p>
                     </div>
 
                 </div>
