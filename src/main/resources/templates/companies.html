@@ -72,8 +72,10 @@
                         <div class="job-item p-4 mb-4" th:each="company:${companies}">
                             <div class="row g-4">
                                 <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid border rounded" th:src="@{/img/com-logo-1.jpg}"
-                                         alt="" style="width: 80px; height: 80px;">
+                                    <img class="flex-shrink-0 img-fluid border rounded"
+                                         th:src="@{'data:image/jpeg;base64,' + ${company.logo}}"
+                                         alt=""
+                                         style="width: 80px; height: 80px;">
                                     <div class="text-start ps-4">
                                         <h5 class="mb-3" th:text="${company.name}"></h5>
                                     </div>
@@ -90,24 +92,24 @@
                     </div>
 
                 </div>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Jobs End -->
+    <!-- Jobs End -->
 
 
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="copyright text-center">
-        &copy; <a class="border-bottom" th:href="@{/index}">JOB.AZ</a> , Bütün hüquqlar qorunur
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="copyright text-center">
+            &copy; <a class="border-bottom" th:href="@{/index}">JOB.AZ</a> , Bütün hüquqlar qorunur
+        </div>
     </div>
-</div>
-<!-- Footer End -->
+    <!-- Footer End -->
 
 
-<!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
 
 <!-- JavaScript Libraries -->
